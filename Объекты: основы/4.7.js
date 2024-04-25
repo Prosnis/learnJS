@@ -1,3 +1,47 @@
+// Создайте символ с именем "id" и используйте его в качестве ключа для добавления свойства "id" в объект.
+const id = Symbol('id')
+const obj = {
+    name: 'artyom'
+}
+
+obj[id] = 1
+
+//Создайте функцию, которая принимает объект и символ, и возвращает значение свойства объекта, соответствующее переданному символу.
+function GetValue(obj, symbol){
+    symbols = Object.getOwnPropertySymbols(obj)
+    return symbols.includes(symbol) ? obj[symbol] : 'no such symbols'
+}
+
+const id = Symbol('id')
+const obj = {
+    name: 'artyom'
+}
+
+obj[id] = 1
+
+console.log(GetValue(obj, id))
+
+// Создайте объект с несколькими символьными свойствами и напишите функцию, которая выводит список всех символьных свойств этого объекта.
+
+const obj = {}
+let a = Symbol('id')
+let b = Symbol('id')
+obj[a] = 1
+obj[b] = 2
+
+function getvalues(obj){
+    let values = Object.getOwnPropertySymbols(obj)
+    if (values.length > 0 ) {
+        for(let value of values) {
+            console.log(obj[value])
+        } 
+    } else {
+        return 'no such values'
+    }
+}
+
+getvalues(obj)
+
 // Создаём символ id с описанием (именем) "id"
 let id = Symbol("id");
 
