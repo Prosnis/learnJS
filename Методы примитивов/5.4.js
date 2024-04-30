@@ -31,3 +31,35 @@ arr[2](); // function
 // Заканчивает запрашивать значения, когда пользователь введёт не числовое значение, пустую строку или нажмёт «Отмена».
 // Подсчитывает и возвращает сумму элементов массива.
 // P.S. Ноль 0 – считается числом, не останавливайте ввод значений при вводе «0».
+function sumInput() {
+    const arr = [];
+    let el;
+    do {
+       el = +prompt('Введите число', '');
+       if (!isNaN(el)) {
+           arr.push(el);
+       }
+    } while (el !== '' && el !== null && isFinite(el));
+    return alert(arr.reduce((a,b) => a+b, 0));
+}
+console.log(sumInput())
+
+
+// Подмассив наибольшей суммы
+// На входе массив чисел, например: arr = [1, -2, 3, 4, -9, 6].
+// Задача: найти непрерывный подмассив в arr, сумма элементов в котором максимальна.
+// Функция getMaxSubSum(arr) должна возвращать эту сумму.
+
+function getMaxSubSum(arr) {
+    let result = 0
+    let current = 0
+
+    for (let i = 0; i < arr.length; i++) {
+        current += arr[i]
+        result = Math.max(result, current)
+        if (current < 0) current = 0
+    }
+
+    return result
+}
+
