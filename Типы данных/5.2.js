@@ -1,5 +1,40 @@
-// Сумма пользовательских чисел
-// Создайте скрипт, который запрашивает ввод двух чисел (используйте prompt) и после показывает их сумму.
+// Генерация случайного пароля:
+// Напишите функцию, которая генерирует случайный пароль заданной длины, 
+// используя метод Math.random для генерации случайных символов
+function passGenerator(length) {
+  let result = "";
+  let symbols =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (let i = 0; i < length; i++) {
+    result += symbols.at(Math.random() * symbols.length);
+  }
+
+  return result;
+}
+
+console.log(passGenerator(6));
+
+// Проверка числа на простоту:
+// Напишите функцию, которая принимает целое число и определяет, является ли оно простым, используя методы Math.sqrt, Math.floor и оператор %.
+
+function generateRandomColor() {
+  let result = "";
+  const red = Math.floor(Math.random() * 256).toString(16);
+  const green = Math.floor(Math.random() * 256).toString(16);
+  const blue = Math.floor(Math.random() * 256).toString(16);
+  result = `#${red}${green}${blue}`
+
+  return result
+}
+
+console.log(generateRandomColor())
+
+
+// Генерация случайного цвета в формате HEX:
+// Напишите функцию, которая генерирует случайный цвет в формате HEX (#RRGGBB), 
+// используя метод Math.random для генерации значений красной,
+//  зеленой и синей составляющих и метод toString(16) для преобразования чисел в шестнадцатеричную строку.
 
 let a = +prompt("a", "");
 let b = +prompt("b", "");
