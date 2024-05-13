@@ -46,3 +46,18 @@ function concat(...args) {
 
 console.log(concat(arr, [4, [5]], [6, 7], 8, 9)); //[1, 2, 3, 4, [5], 6, 7, 8, 9]
 console.log(concat(arr, [4, 5], [6, 7], 8, 9)); //[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+/////// 
+
+function map(arr,callback){
+    const result = []
+    for(let i = 0; i < arr.length; i++){
+        result.push(callback(arr[i], i, arr))
+    }
+    return result
+}
+
+const array = [1,2,3,4,5]
+console.log(map(array, (el, index) => el + index)) // [ 1, 3, 5, 7, 9 ]
+console.log(array.map((index, el)=> el + index)) // [ 1, 3, 5, 7, 9 ]
