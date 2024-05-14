@@ -31,7 +31,7 @@ function concat(...args) {
   let result = [];
 
   for (let i = 0; i < args.length; i++) {
-    if (typeof args[i] === "object") {
+    if (Array.isArray(args[i])) {
       for (let j = 0; j < args[i].length; j++) {
         result.push(args[i][j]);
       }
