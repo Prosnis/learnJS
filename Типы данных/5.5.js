@@ -27,11 +27,23 @@ console.log(str.slice(1))
 
 /////////////////////////
 let arr = [1, 2, 3];
+
+const obj = {
+  0: "artyom",
+  1: 30,
+  [Symbol.isConcatSpreadable]: true,
+  length: 2,
+};
+
 function concat(...args) {
   let result = [];
 
   for (let i = 0; i < args.length; i++) {
     if (Array.isArray(args[i])) {
+      for (let j = 0; j < args[i].length; j++) {
+        result.push(args[i][j]);
+      }
+    } else if (typeof args[i] === "object" && args[i][Symbol.isConcatSpreadable]) {
       for (let j = 0; j < args[i].length; j++) {
         result.push(args[i][j]);
       }
@@ -43,9 +55,8 @@ function concat(...args) {
   return result;
 }
 
-
-console.log(concat(arr, [4, [5]], [6, 7], 8, 9)); //[1, 2, 3, 4, [5], 6, 7, 8, 9]
-console.log(concat(arr, [4, 5], [6, 7], 8, 9)); //[1, 2, 3, 4, 5, 6, 7, 8, 9]
+console.log(concat(arr, [4, [5]], [6, 7], 8, 9, obj)); //[ 1, 2, 3, 4, [ 5 ], 6, 7, 8, 9, 'artyom', 30 ]
+console.log(arr.concat([4, [5]], [6, 7], 8, 9,obj)); //[ 1, 2, 3, 4, [ 5 ], 6, 7, 8, 9, 'artyom', 30 ]
 
 
 /////// 
