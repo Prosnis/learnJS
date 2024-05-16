@@ -120,8 +120,110 @@ arr.reverse();
 alert( arr ); // 5,4,3,2,1
 Он также возвращает массив arr с изменённым порядком элементов.
 
+split 
+
+let names = 'Вася, Петя, Маша';
+let arr = names.split(', ');
+for (let name of arr) {
+  alert( `Сообщение получат: ${name}.` ); // Сообщение получат: Вася (и другие имена)
+}
+
+join
+
+let arr = ['Вася', 'Петя', 'Маша'];
+let str = arr.join(';'); // объединить массив в строку через ;
+alert( str ); // Вася;Петя;Маша
+
+reduce
+let value = arr.reduce(function(accumulator, item, index, array) {
+  // ...
+}, [initial]);
 
 
+Array.isArray
+alert(Array.isArray({})); // false
+alert(Array.isArray([])); // true
+
+fill
+arr.fil(el,start,end)
+// Fill with 0 from position 2 until position 4
+console.log(array1.fill(0, 2, 4));
+// Expected output: Array [1, 2, 0, 0]
+// Fill with 5 from position 1
+console.log(array1.fill(5, 1));
+// Expected output: Array [1, 5, 5, 5]
+console.log(array1.fill(6));
+// Expected output: Array [6, 6, 6, 6]
+
+every
+[12, 5, 8, 130, 44].every((elem) => elem >= 10); // false
+[12, 54, 18, 130, 44].every((elem) => elem >= 10); // true
+
+some
+const array = [1, 2, 3, 4, 5];
+// Checks whether an element is even
+const even = (element) => element % 2 === 0;
+console.log(array.some(even));
+// Expected output: true
+
+flat
+var arr1 = [1, 2, [3, 4]];
+arr1.flat();
+// [1, 2, 3, 4]
+var arr2 = [1, 2, [3, 4, [5, 6]]];
+arr2.flat();
+// [1, 2, 3, 4, [5, 6]]
+var arr3 = [1, 2, [3, 4, [5, 6]]];
+arr3.flat(2);
+// [1, 2, 3, 4, 5, 6]
+var arr4 = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
+arr4.flat(Infinity);
+// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+arr.copyWithin
+arr.copyWithin(target,start,end)
+[1, 2, 3, 4, 5].copyWithin(0, 3);
+// [4, 5, 3, 4, 5]
+[1, 2, 3, 4, 5].copyWithin(0, 3, 4);
+// [4, 2, 3, 4, 5]
+[1, 2, 3, 4, 5].copyWithin(0, -2, -1);
+// [4, 2, 3, 4, 5]
+
+toReversed()
+toSorted()
+toSpliced()
 
 
+//Переведите текст вида border-left-width в borderLeftWidth
+function camelize(str){
+  return str.split('-').map((el, i) => i == 0 ? el : el[0].toUpperCase() + el.slice(1)).join('')
+}
+// Фильтрация по диапазону
+function filterRange(arr, a, b) {
+  return arr.filter((el) => a <= el && b >= el);
+}
+let arr = [5, 3, 8, 1];
+console.log(filterRange(arr, 1, 4));
+
+//Фильтрация по диапазону "на месте"
+function filterRangeInPlace(arr, a, b) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] < a || arr[i] > b) {
+      arr.splice(i, 1)
+    }
+  }
+}
+let arr = [5, 3, 8, 1];
+filterRangeInPlace(arr, 1, 4)
+console.log(arr)
+
+// Сортировать в порядке по убыванию
+let arr = [5, 2, 1, -10, 8];
+arr.sort((a,b) => b-a)
+
+// Скопировать и отсортировать массив
+let arr = ["HTML", "JavaScript", "CSS"];
+console.log(arr)
+console.log(arr.toSorted())
+console.log(arr)
 
