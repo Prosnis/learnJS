@@ -72,3 +72,56 @@ function map(arr,callback){
 const array = [1,2,3,4,5]
 console.log(map(array, (el, index) => el + index)) // [ 1, 3, 5, 7, 9 ]
 console.log(array.map((index, el)=> el + index)) // [ 1, 3, 5, 7, 9 ]
+
+
+indexOf/lastIndexOf и includes
+
+arr.indexOf(item, from) // вернет  index первого найденного элл и остановит поиск или -1
+arr.includes(item, from) // вернет boolean 
+// includes может найти NaN === NaN в отличии от indexOf
+const arr = [NaN];
+alert( arr.indexOf(NaN) ); // -1 (неверно, должен быть 0)
+alert( arr.includes(NaN) );// true (верно)
+
+
+find и findIndex/findLastIndex
+
+let result = arr.find(function(item, index, array) {
+  // если true - возвращается текущий элемент и перебор прерывается
+  // если все итерации оказались ложными, возвращается undefined
+});
+
+
+filter
+
+let results = arr.filter(function(item, index, array) {
+  // если `true` -- элемент добавляется к results и перебор продолжается
+  // возвращается пустой массив в случае, если ничего не найдено
+});
+
+sort(fn)
+
+arr1.sort() //[1, 23, 231, 543,6, 634, 8]
+// sort сравнивает значения как строки по символам, что приводит к 6 > 543, т.к 6 > 5 - сравнение останавливается
+// для корректной сортировки мы можем возращать положительное число если наше условие соблюденно
+function compareNumeric(a, b) {
+    if (a > b) return 1;
+    if (a == b) return 0;
+    if (a < b) return -1;
+  }
+// или сократить запись до 
+arr1.sort((a,b) => a-b) //[1, 6, 8, 23,231, 543, 634]
+// подойдет любое положительное число полученное в результате операции a-b
+
+reverse
+let arr = [1, 2, 3, 4, 5];
+arr.reverse();
+
+alert( arr ); // 5,4,3,2,1
+Он также возвращает массив arr с изменённым порядком элементов.
+
+
+
+
+
+
