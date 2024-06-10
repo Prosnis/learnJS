@@ -1,3 +1,18 @@
+// Проверка на палиндром:
+// Напишите функцию isPalindrome(str), которая принимает строку и возвращает true, если строка является палиндромом, и false в противном случае, используя рекурсию.
+function isPalindrome(str) {
+  if (str.length <= 1) {
+    return true;
+  } else if (str[0] !== str[str.length - 1]) {
+    return false;
+  }
+
+  return isPalindrome(str.slice(1, str.length - 1));
+}
+
+console.log(isPalindrome("radar")); // true
+console.log(isPalindrome("hello")); // false
+
 // Поиск максимального элемента в массиве:
 // Напишите функцию findMax(arr), которая принимает массив чисел и возвращает максимальный элемент, используя рекурсию.
 function findMax(arr) {
