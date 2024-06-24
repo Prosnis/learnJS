@@ -1,6 +1,6 @@
 var one = 'one' // window.one => 'one'
 let two = 'two' //window.two => undefined
-var three = 'three' //window.three => undefined
+const three = 'three' //window.three => undefined
 
 
 function declaration(a = 10, b =10){
