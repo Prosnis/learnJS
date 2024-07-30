@@ -3,6 +3,14 @@ class ElectricalAppliances {
     this.name = name;
     this.power = power;
   }
+
+  start(){
+    console.log('Электроприбор включен')
+  }
+
+  stop(){
+    console.log('Электроприбор выключен')
+  }
 }
 
 
@@ -43,6 +51,7 @@ class ElectricKettle extends ElectricalAppliances {
   
 
   start() {
+    super.start()
     if (this.waterVolume < 100 || this.waterVolume == undefined)
       return console.log("Чайник сгорел");
 
@@ -71,6 +80,7 @@ class ElectricKettle extends ElectricalAppliances {
   }
 
   stop() {
+    super.stop()
     clearInterval(this.intervalTimer);
 
     this.finalTemperature +=
@@ -85,3 +95,14 @@ class ElectricKettle extends ElectricalAppliances {
 
 
 const electricKettle = new ElectricKettle('samsung', 1000, 1700)
+
+
+
+electricKettle.fill(345, 52)
+electricKettle.fill(523, 62)
+setTimeout(() => {
+  electricKettle.start()
+}, 5000);
+setTimeout(() => {
+  electricKettle.stop()
+}, 10000);
