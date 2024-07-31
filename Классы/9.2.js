@@ -28,9 +28,7 @@ class ElectricKettle extends ElectricalAppliances {
   }
   fill(volume, temp) {
     if (this.working)
-      return console.log(
-        "Сначала выключите, такого не бывает в реальной жизни"
-      );
+      return console.log("Сначала выключите");
 
     if (!this.waterVolume) {
       this.finalTemperature = temp;
