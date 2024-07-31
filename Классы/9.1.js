@@ -1,3 +1,8 @@
+// Во-первых, функция, созданная с помощью class, помечена специальным внутренним свойством [[IsClassConstructor]]: true. Поэтому это не совсем то же самое, что создавать её вручную.
+// Методы класса являются неперечислимыми. Определение класса устанавливает флаг enumerable в false для всех методов в "prototype".
+// Классы всегда используют use strict. Весь код внутри класса автоматически находится в строгом режиме.
+
+
 class ElectricKettle {
   constructor(name, power = 1000) {
     this.name = name;
@@ -14,7 +19,7 @@ class ElectricKettle {
 
   fill(volume, temp) {
     
-    if (this.working) return console.log("Сначала выключите, такого не бывает в реальной жизни")
+    if (this.working) return console.log("Сначала выключите")
 
     if (!this.waterVolume) {
       this.finalTemperature = temp;
