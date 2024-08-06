@@ -1,0 +1,86 @@
+body {
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    
+    
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 800px;
+    height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+
+    flex-wrap: wrap;
+}
+
+#containerSet {
+    border: 1px solid black;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    height: 400px;
+
+
+}
+
+#container {
+    border: 1px solid black;
+    padding: 20px;
+    width: 300px;
+    height: 400px;
+    text-align: center;
+
+}
+
+#containerStatus {
+    border: 1px solid black;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    width: 650px;
+
+}
+
+.statusBar {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    grid-area: set;
+    padding: 0;
+    
+}
+
+input, button {
+    margin: 5px 0;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 15px;
+
+}
+
+progress {
+    font-size: 30px;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.wrong {
+    border: 1px solid red
+}
+
+
+
+  
