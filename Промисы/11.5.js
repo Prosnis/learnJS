@@ -49,7 +49,7 @@ Promise.all(requests) // Ожидаем, пока все запросы заве
     responses.forEach((response) => {
       if (!response.ok) {
         throw new Error(
-          `HTTP error! status: ${response.status} for URL ${response.url}` // В случае throw или rejected Promose.all остановится с ошибкой и проигнорирует остальные промисы
+          `HTTP error! status: ${response.status} for URL ${response.url}` // Promise.all завершается с ошибкой, если она возникает в любом из переданных промисов
         );
       }
     });
@@ -60,3 +60,82 @@ Promise.all(requests) // Ожидаем, пока все запросы заве
   .catch((err) => {
     console.log(err)
   })
+
+//////////////////
+
+Promise.allSettled 
+
+всегда ждёт завершения всех промисов. В массиве результатов будет
+
+{status:"fulfilled", value:результат} для успешных завершений,
+{status:"rejected", reason:ошибка} для ошибок.
+
+
+let urls = [
+  'https://api.github.com/users/iliakan',
+  'https://api.github.com/users/remy',
+  'https://no-such-url'
+];
+
+Promise.allSettled(urls.map(url => fetch(url)))
+  .then(results => { 
+    // Создаем массив промисов для успешных запросов
+    const fulfilledPromises = results.map((result, index) => {
+      if (result.status === "fulfilled") {
+        // Если запрос успешен, возвращаем промис с JSON
+        return result.value.json();
+      } else {
+        // Если запрос отклонён, выводим причину ошибки
+        console.log(`${urls[index]}: ${result.reason}`);
+        // Возвращаем отклонённый промис
+        return Promise.reject(result.reason);
+      }
+    });
+    
+    // Ждём завершения всех успешных промисов
+    return Promise.allSettled(fulfilledPromises);
+  })
+  .then(users => {
+    users.forEach(user => {
+      if (user.status === "fulfilled") {
+        // Обрабатываем успешные результаты
+        console.log(user.value.name);
+      } else {
+        // Обрабатываем отклонённые результаты
+        console.log(`Error loading user data: ${user.reason}`);
+      }
+    });
+  });
+
+/////////////
+
+Promise.race
+
+// ждёт только первый выполненный промис, из которого берёт результат (или ошибку).
+let promise = Promise.race(iterable);
+
+Promise.race([
+  new Promise((resolve, reject) => setTimeout(() => resolve(1), 1000)),
+  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Ошибка!")), 2000)),
+  new Promise((resolve, reject) => setTimeout(() => resolve(3), 3000))
+]).then(console.log); // 1
+// Быстрее всех выполнился первый промис, он и дал результат. После этого остальные промисы игнорируются.
+
+/////////////
+
+
+Promise.any
+
+// ждёт только первый успешно выполненный промис, из которого берёт результат.
+
+let promise = Promise.any(iterable);
+
+Promise.any([
+  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Ошибка!")), 1000)),
+  new Promise((resolve, reject) => setTimeout(() => resolve(1), 2000)),
+  new Promise((resolve, reject) => setTimeout(() => resolve(3), 3000))
+]).then(console.log); // 1
+
+
+
+
