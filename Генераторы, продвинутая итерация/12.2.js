@@ -1,6 +1,5 @@
-
-getSwapiPagerator = (endpoint) => 
-  async function* () {
+function getSwapiPagerator(endpoint) {
+  return async function* () {
     let nextUrl = `http://swapi.dev/api/${endpoint}`;
     while (nextUrl) {
       const response = await fetch(nextUrl);
@@ -8,7 +7,8 @@ getSwapiPagerator = (endpoint) =>
       nextUrl = data.next; 
       yield* data.results; 
     }
-  };
+  }
+} 
 
 
 starWars = {
@@ -27,4 +27,3 @@ const results = [];
   }
   console.log('All planets:', results); 
 })();
-
