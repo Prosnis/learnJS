@@ -1,3 +1,21 @@
+cardDeck = {
+  suits: ['♥️','♣️','♠️','♦️'],
+  courts: ['J', 'Q', 'K', 'A'],
+  [Symbol.iterator]: function*() {
+    for (let suit of this.suits) {
+      for (let i = 2; i <= 10; i++) yield suit + i
+      for (let court of this.courts) yield suit + court
+    }
+  }
+}
+
+
+console.log([...cardDeck]) // (52) ['♥️2', '♥️3', '♥️4', '♥️5', '♥️6', '♥️7'...] 
+
+
+
+
+
 // Задача 1: Счётчик с шагом
 // Напишите генератор counter(start, step), который принимает начальное значение start и шаг step. 
 // При каждом вызове .next() генератор должен возвращать следующее значение, увеличенное на шаг.
@@ -40,7 +58,7 @@ gen.next("apple");
 gen.next("banana");
 console.log(gen.next("STOP").value); // ['apple', 'banana']
 
-// Задача 4: Последовательность Фибоначчи
+// Задача 4
 // Напишите генератор arrayIterator(arr), 
 // который принимает массив arr и возвращает элементы 
 // этого массива по одному при каждом вызове .next().
